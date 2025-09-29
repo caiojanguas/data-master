@@ -1,0 +1,6 @@
+pandas
+pyarrow
+duckdb
+python-dotenv
+kaggle
+ipykernel

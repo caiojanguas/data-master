@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+data/raw/*
+!data/raw/kaggle/
+!data/raw/spotify_api/
+data/raw/kaggle/*.zip
+data/staging/*
+data/curated/*
+data/outputs/*
+*.duckdb
+.env
+.DS_Store
