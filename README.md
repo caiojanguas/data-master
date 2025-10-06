@@ -137,8 +137,9 @@ DuckDB como engine SQL local (portável e rápido), com camadas raw → staging 
 Kaggle como fonte confiável; metadados de ingestão são registrados.
 
 --------------
-📐 Diagrama da Modelagem Curated
+### 📐 Diagrama da Modelagem Curated
 
+```mermaid
 erDiagram
     dim_artist {
         STRING artist_id PK
@@ -196,5 +197,6 @@ erDiagram
     fact_track ||--|| fact_track_features : "1:1"
     fact_track ||--o{ bridge_track_genre : "1:N"
     dim_genre ||--o{ bridge_track_genre : "1:N"
+```
 --------------------------------------------------
 
