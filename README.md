@@ -135,3 +135,66 @@ Dados não versionados no Git (apenas scripts). Tudo é gerado em tempo de execu
 DuckDB como engine SQL local (portável e rápido), com camadas raw → staging → curated.
 
 Kaggle como fonte confiável; metadados de ingestão são registrados.
+
+--------------
+📐 Diagrama da Modelagem Curated
+
+erDiagram
+    dim_artist {
+        STRING artist_id PK
+        STRING artist_name
+        STRING artist_name_masked
+        TIMESTAMP first_seen_ts
+        STRING source
+    }
+
+    dim_album {
+        STRING album_id PK
+        STRING album_name
+        STRING artist_id FK
+        STRING source
+    }
+
+    dim_genre {
+        STRING genre_id PK
+        STRING genre_name
+    }
+
+    fact_track {
+        STRING track_id PK
+        STRING album_id FK
+        STRING track_name
+        INT duration_ms
+        BOOLEAN explicit_flag
+        INT popularity
+        STRING source
+        TIMESTAMP ingestion_ts
+    }
+
+    fact_track_features {
+        STRING track_id PK
+        DOUBLE danceability
+        DOUBLE energy
+        DOUBLE loudness
+        INT mode
+        DOUBLE speechiness
+        DOUBLE acousticness
+        DOUBLE instrumentalness
+        DOUBLE liveness
+        DOUBLE valence
+        DOUBLE tempo
+        INT time_signature
+    }
+
+    bridge_track_genre {
+        STRING track_id FK
+        STRING genre_id FK
+    }
+
+    dim_artist ||--o{ dim_album : "1:N"
+    dim_album ||--o{ fact_track : "1:N"
+    fact_track ||--|| fact_track_features : "1:1"
+    fact_track ||--o{ bridge_track_genre : "1:N"
+    dim_genre ||--o{ bridge_track_genre : "1:N"
+--------------------------------------------------
+
