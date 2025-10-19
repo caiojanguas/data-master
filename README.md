@@ -19,6 +19,10 @@ cd data-master
 python -m venv .venv
 .\.venv\Scripts\activate.bat
 
+Caso não acione, rodar o script abaixo
+python -m venv .venv
+.\.venv\Scripts\activate.ps1
+
 2.2)Windows – PowerShell
     Se o PowerShell bloquear scripts, você pode (A) usar o CMD acima, (B) usar o “modo sem ativar” abaixo, ou (C) habilitar scripts:
 
